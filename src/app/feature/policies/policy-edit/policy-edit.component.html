@@ -1,0 +1,132 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form (ngSubmit)="onSubit(f)" #f>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            ngModel
+            required
+            #name="ngModel">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)"
+            class="alert alert-danger">
+              <div *ngIf = "name.errors?.required">
+                First Name field can't be blank
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="description">Description</label>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            ngModel
+            required
+            #description="ngModel">
+          <div *ngIf="description.invalid && (description.dirty || description.touched)"
+            class="alert alert-danger">
+              <div *ngIf = "description.errors?.required">
+                Description field can't be blank
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="coverage">Coverage Type</label>
+          <input
+            type="text"
+            id="coverage"
+            name="coverage"
+            ngModel
+            required
+            #coverage="ngModel">
+          <div *ngIf="coverage.invalid && (coverage.dirty || coverage.touched)"
+            class="alert alert-danger">
+              <div *ngIf = "coverage.errors?.required">
+                Coverage field can't be blank
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="startdate">Start date</label>
+          <input
+            type="text"
+            id="startdate"
+            name="startdate"
+            ngModel
+            required
+            #startdate="ngModel">
+          <div *ngIf="startdate.invalid && (startdate.dirty || startdate.touched)"
+            class="alert alert-danger">
+              <div *ngIf = "startdate.errors?.required">
+                Start date Name field can't be blank
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="coveragetime">Coverage time</label>
+          <input
+            type="text"
+            id="coveragetime"
+            name="coveragetime"
+            ngModel
+            required
+            #coveragetime="ngModel">
+          <div *ngIf="coveragetime.invalid && (coveragetime.dirty || coveragetime.touched)"
+            class="alert alert-danger">
+              <div *ngIf = "coveragetime.errors?.required">
+                Coverage time field can't be blank
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="cost">Cost</label>
+          <input
+            type="text"
+            id="cost"
+            name="cost"
+            ngModel
+            required
+            #cost="ngModel">
+          <div *ngIf="cost.invalid && (cost.dirty || cost.touched)"
+            class="alert alert-danger">
+              <div *ngIf = "cost.errors?.required">
+                Coverage time field can't be blank
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="risktype">Risk type</label>
+          <input
+            type="text"
+            id="risktype"
+            name="risktype"
+            ngModel
+            required
+            #risktype="ngModel">
+          <div *ngIf="risktype.invalid && (risktype.dirty || risktype.touched)"
+            class="alert alert-danger">
+              <div *ngIf = "risktype.errors?.required">
+                Coverage time field can't be blank
+              </div>
+            </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
