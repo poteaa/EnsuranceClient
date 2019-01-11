@@ -10,6 +10,7 @@ import { Policy } from './policy.model';
 export class PolicyService {
 
   private readonly policiesUrl = 'policies';
+  private readonly policiesAllInfoUrl = 'policiesallinfo';
   private readonly risksUrl = 'risks';
 
   constructor(private httpBackendService: HttpBackendService) { }
@@ -22,6 +23,10 @@ export class PolicyService {
     return this.httpBackendService.get<Policy>(`${this.policiesUrl}/${id}`);
   }
 
+  getPolicyAllInfo(id: number): Observable<Policy> {
+    return this.httpBackendService.get<Policy>(`${this.policiesAllInfoUrl}/${id}`);
+  }
+
   addPolicy(policy: Policy): Observable<Policy> {
     return this.httpBackendService
             .post<Policy, Policy>(`${this.policiesUrl}`, policy);
@@ -30,5 +35,10 @@ export class PolicyService {
   updatePolicy(id: number, policy: Policy): Observable<Policy> {
     return this.httpBackendService
             .put<boolean, Policy>(`${this.policiesUrl}/${id}`, policy);
+  }
+
+  deletePolicy(id: number): Observable<any> {
+    return this.httpBackendService
+            .delete(`${this.policiesUrl}/${id}`);
   }
 }

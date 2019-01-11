@@ -1,4 +1,14 @@
-<div *ngFor="let policy of policies">
-  {{ policy.name }}
-  {{ policy.description }}
+<div>
+  <h1>Policies</h1>
+  <table>
+    <tr *ngFor="let policy of policies">
+      <td>{{ policy.name }}</td>
+      <td>{{ policy.description }}</td>
+      <td><a [routerLink]="['policies', policy.id, 'detail']">View</a></td>
+      <td><a [routerLink]="['policy', policy.id, 'edit']">Edit</a></td>
+      <td (click)="delete(policy.id)">Delete</td>
+    </tr>
+  </table>
+  <button
+    class="btn btn-success" routerLink="policy/create">Create</button>
 </div>

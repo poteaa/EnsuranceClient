@@ -19,4 +19,10 @@ export class PoliciesComponent implements OnInit {
       });
   }
 
+  delete(id: number) {
+    this.policyService.deletePolicy(id)
+      .subscribe(() => this.policies.splice(this.policies.findIndex(p => p.id === id), 1));
+    console.log(id);
+  }
+
 }

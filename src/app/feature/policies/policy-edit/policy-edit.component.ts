@@ -72,5 +72,5 @@ export class PolicyEditComponent implements OnInit {
   onClear() {
     this.policyForm.reset();
     this.editMode = false;
-}
+  }
 }
