@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PolicyService } from './shared/policy.service';
+import { Policy } from './shared/policy.model';
 
 @Component({
   selector: 'app-policies',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PoliciesComponent implements OnInit {
 
-  constructor() { }
+  policies: Policy[];
+  constructor(private policyService: PolicyService) { }
 
   ngOnInit() {
+    this.policyService.getPolicies()
+      .subscribe(policies => {
+        this.policies = policies;
+      });
   }
 
 }

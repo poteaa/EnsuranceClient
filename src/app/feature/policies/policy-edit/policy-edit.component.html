@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <form (ngSubmit)="onSubit(f)" #f>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
       <div class="row">
         <div class="col-sm-5 form-group">
           <label for="name">Name</label>
@@ -39,17 +39,21 @@
       </div>
       <div class="row">
         <div class="col-sm-5 form-group">
-          <label for="coverage">Coverage Type</label>
-          <input
+          <label for="coveragetype">Coverage Type</label>
+          <select
             type="text"
-            id="coverage"
-            name="coverage"
+            id="coveragetype"
+            name="coveragetype"
             ngModel
             required
-            #coverage="ngModel">
-          <div *ngIf="coverage.invalid && (coverage.dirty || coverage.touched)"
+            #coveragetype="ngModel">>
+              <option *ngFor="let coverage of allCoverages"  [value]="coverage.id">
+                {{ coverage.name }}
+              </option>
+          </select>
+          <div *ngIf="coveragetype.invalid && (coveragetype.dirty || coveragetype.touched)"
             class="alert alert-danger">
-              <div *ngIf = "coverage.errors?.required">
+              <div *ngIf = "coveragetype.errors?.required">
                 Coverage field can't be blank
               </div>
             </div>
@@ -57,17 +61,17 @@
       </div>
       <div class="row">
         <div class="col-sm-5 form-group">
-          <label for="startdate">Start date</label>
+          <label for="coveragepercentage">Coverage percentage</label>
           <input
             type="text"
-            id="startdate"
-            name="startdate"
+            id="coveragepercentage"
+            name="coveragepercentage"
             ngModel
             required
-            #startdate="ngModel">
-          <div *ngIf="startdate.invalid && (startdate.dirty || startdate.touched)"
+            #coveragepercentage="ngModel">
+          <div *ngIf="coveragepercentage.invalid && (coveragepercentage.dirty || coveragepercentage.touched)"
             class="alert alert-danger">
-              <div *ngIf = "startdate.errors?.required">
+              <div *ngIf = "coveragepercentage.errors?.required">
                 Start date Name field can't be blank
               </div>
             </div>
@@ -112,13 +116,17 @@
       <div class="row">
         <div class="col-sm-5 form-group">
           <label for="risktype">Risk type</label>
-          <input
+          <select
             type="text"
             id="risktype"
             name="risktype"
             ngModel
             required
-            #risktype="ngModel">
+            #risktype="ngModel">>
+              <option *ngFor="let risk of allRisks" [value]="risk.id">
+                {{ risk.name }}
+              </option>
+          </select>
           <div *ngIf="risktype.invalid && (risktype.dirty || risktype.touched)"
             class="alert alert-danger">
               <div *ngIf = "risktype.errors?.required">
@@ -127,6 +135,16 @@
             </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-xs-12">
+        <button
+            class="btn btn-success"
+            type="submit"
+            [disabled]="!f.valid">{{ editMode ? 'Update' : 'Add'}}</button>
+        <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
+        </div>
+    </div>
+
     </form>
   </div>
 </div>
