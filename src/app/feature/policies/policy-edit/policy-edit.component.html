@@ -2,9 +2,10 @@
   <div class="col-xs-12">
     <form (ngSubmit)="onSubmit(f)" #f="ngForm">
       <div class="row">
-        <div class="col-sm-5 form-group">
+        <div class="horizonta-align-center col-sm-4 form-group">
           <label for="name">Name</label>
           <input
+            class="input"
             type="text"
             id="name"
             name="name"
@@ -18,11 +19,10 @@
               </div>
             </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-5 form-group">
+        <div class="horizonta-align-center col-sm-4 form-group">
           <label for="description">Description</label>
           <input
+            class="input"
             type="text"
             id="description"
             name="description"
@@ -36,11 +36,10 @@
               </div>
             </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-5 form-group">
+        <div class="horizonta-align-center col-sm-4 form-group">
           <label for="coveragetype">Coverage Type</label>
           <select
+            class="input"
             type="text"
             id="coveragetype"
             name="coveragetype"
@@ -58,11 +57,10 @@
               </div>
             </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-5 form-group">
+        <div class="horizonta-align-center col-sm-4 form-group">
           <label for="coveragepercentage">Coverage percentage</label>
           <input
+            class="input"
             type="text"
             id="coveragepercentage"
             name="coveragepercentage"
@@ -76,11 +74,10 @@
               </div>
             </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-5 form-group">
+        <div class="horizonta-align-center col-sm-4 form-group">
           <label for="coveragetime">Coverage time</label>
           <input
+            class="input"
             type="text"
             id="coveragetime"
             name="coveragetime"
@@ -94,11 +91,10 @@
               </div>
             </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-5 form-group">
+        <div class="horizonta-align-center col-sm-4 form-group">
           <label for="cost">Cost</label>
           <input
+            class="input"
             type="text"
             id="cost"
             name="cost"
@@ -112,18 +108,17 @@
               </div>
             </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-5 form-group">
+        <div class="horizonta-align-center col-sm-4 form-group">
           <label for="risktype">Risk type</label>
           <select
+            class="input"
             type="text"
             id="risktype"
             name="risktype"
             ngModel
             required
             #risktype="ngModel">>
-              <option *ngFor="let risk of allRisks" [value]="risk.id">
+              <option class="horizonta-align-center" *ngFor="let risk of allRisks" [value]="risk.id">
                 {{ risk.name }}
               </option>
           </select>
@@ -137,14 +132,13 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-        <button
-            class="btn btn-success"
-            type="submit"
-            [disabled]="!f.valid">{{ editMode ? 'Update' : 'Add'}}</button>
-        <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
+          <button
+              class="btn btn-success"
+              type="submit"
+              [disabled]="!f.valid">{{ editMode ? 'Update' : 'Add'}}</button>
+          <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
         </div>
-    </div>
-
+      </div>
     </form>
   </div>
 </div>

@@ -10,6 +10,7 @@ import { Policy } from './policy.model';
 export class PolicyService {
 
   private readonly policiesUrl = 'policies';
+  private readonly basicInfoUrl = 'basicinfo';
   private readonly policiesAllInfoUrl = 'policiesallinfo';
   private readonly risksUrl = 'risks';
 
@@ -17,6 +18,10 @@ export class PolicyService {
 
   getPolicies(): Observable<Policy[]> {
     return this.httpBackendService.get<Policy[]>(this.policiesUrl);
+  }
+
+  getPoliciesBasicInfo(): Observable<Policy[]> {
+    return this.httpBackendService.get<Policy[]>(`${this.policiesUrl}/${this.basicInfoUrl}`);
   }
 
   getPolicy(id: number): Observable<Policy> {

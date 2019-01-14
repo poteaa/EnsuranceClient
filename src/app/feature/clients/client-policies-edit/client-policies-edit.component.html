@@ -1,0 +1,10 @@
+<div class="row">
+    <div class="col-xs-12">
+      <div *ngFor="let cp of clientPolicies">
+        <input
+          type="checkbox"
+          [checked]="cp.isActive"
+          (click)="addorRemoveClientPolicy(cp.id);">
+        {{ cp.policyName }}
+    </div>
+</div>

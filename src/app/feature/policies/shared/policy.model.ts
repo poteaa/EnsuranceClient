@@ -1,6 +1,6 @@
-export interface Policy {
-    id;
-    name;
+import { PolicyBase } from './policy-base.model';
+
+export interface Policy extends PolicyBase {
     description;
     coverageType;
     coveragePercentage;
