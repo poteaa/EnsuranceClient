@@ -5,15 +5,18 @@ import { PoliciesComponent } from './feature/policies/policies.component';
 import { PolicyDetailComponent } from './feature/policies/policy-detail/policy-detail.component';
 import { ClientsComponent } from './feature/clients/clients.component';
 import { ClientPoliciesEditComponent } from './feature/clients/client-policies-edit/client-policies-edit.component';
+import { LoginComponent } from './feature/auth/login/login.component';
+import { AuthGuard } from './feature/auth/shared/auth-guard.service';
 
 const appRoutes: Routes = [
     { path: '', component: PoliciesComponent },
+    { path: 'login', component: LoginComponent },
     { path: 'policies', component: PoliciesComponent },
     { path: 'policies/:id/detail', component: PolicyDetailComponent },
-    { path: 'policy/create', component: PolicyEditComponent },
-    { path: 'policies/:id/edit', component: PolicyEditComponent },
+    { path: 'policy/create', component: PolicyEditComponent, canActivate: [AuthGuard] },
+    { path: 'policies/:id/edit', component: PolicyEditComponent , canActivate: [AuthGuard]},
     { path: 'clients', component: ClientsComponent },
-    { path: 'clients/:id/policies/edit', component: ClientPoliciesEditComponent },
+    { path: 'clients/:id/policiesedit', component: ClientPoliciesEditComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: '' }
 ];
 

@@ -1,3 +1,9 @@
-<ul *ngFor="let client of clients">
-  <li>{{client.firstName}} {{client.lastName}}</li>
-</ul>
+<div>
+  <h1>Clients</h1>
+  <table>
+    <tr *ngFor="let client of clients">
+      <td>{{client.firstName}} {{client.lastName}}</td>
+      <td *ngIf="isAuthenticated()"><a [routerLink]="['../clients', client.id, 'policiesedit']">Edit</a></td>
+    </tr>
+  </table>
+</div>

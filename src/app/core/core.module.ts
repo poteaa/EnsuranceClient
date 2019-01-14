@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from '../app-routing.module';
 import { PoliciesModule } from './../feature/policies/policies.module';
@@ -11,6 +11,9 @@ import { HeaderComponent } from './header/header.component';
 import { ClientService } from '../feature/clients/shared/client.service';
 import { ClientsModule } from '../feature/clients/clients.module';
 import { AuthModule } from './../feature/auth/auth.module';
+import { AuthService } from './../feature/auth/shared/auth.service';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { AuthGuard } from './../feature/auth/shared/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { AuthModule } from './../feature/auth/auth.module';
     PolicyService,
     CoverageService,
     RiskService,
-    ClientService
+    ClientService,
+    AuthService,
+    AuthGuard
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
 })
 export class CoreModule { }

@@ -20,6 +20,10 @@ export class PolicyEditComponent implements OnInit {
   policy: Policy;
   allRisks: Risk[] = [];
   allCoverages: Coverage[] = [];
+  validPercentage: string;
+  validPercentageRange = '([0-9]|[1-8][0-9]|9[0-9]|100)';
+  validPercentageRangeHighRisk = '([0-9]|[1-8][0-9]|9[0-9]|50)';
+  errorHighRiskPolicy = '';
   private id: number;
   private editMode = false;
 
@@ -29,6 +33,7 @@ export class PolicyEditComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.validPercentage = this.validPercentageRange;
     this.route.params
       .subscribe((params: Params) => {
         this.id = +params['id'];
@@ -45,11 +50,11 @@ export class PolicyEditComponent implements OnInit {
               this.policyForm.setValue({
                 name: this.policy.name,
                 description: this.policy.description,
-                coveragetype: this.policy.coverageType,
-                coveragepercentage: this.policy.coveragePercentage,
-                coveragetime: this.policy.coverageTime,
+                coverageType: this.policy.coverageType,
+                coveragePercentage: this.policy.coveragePercentage,
+                coverageTime: this.policy.coverageTime,
                 cost: this.policy.cost,
-                risktype: this.policy.riskType
+                riskType: this.policy.riskType
               });
             }
           });
@@ -60,12 +65,26 @@ export class PolicyEditComponent implements OnInit {
     const value = form.value;
     this.policy = value;
     console.log(this.policy);
+    if (this.policy.riskType === 4 && this.policy.coveragePercentage > 50) {
+      this.errorHighRiskPolicy = `The coverage percentage for a high risk policy can not b
+      e greater than 50%`;
+      return;
+    }
     if (this.editMode) {
       this.policyService.updatePolicy(this.id, this.policy)
         .subscribe(policy => this.policy = policy);
     } else {
       this.policyService.addPolicy(this.policy)
         .subscribe(policy => this.policy = policy);
+    }
+  }
+
+  riskChange(riskType, coveragepercentage) {
+    if (riskType.value === '4') {
+      this.validPercentage = this.validPercentageRangeHighRisk;
+    } else {
+      this.errorHighRiskPolicy = '';
+      this.validPercentage = this.validPercentageRange;
     }
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
 import { AuthRequest } from '../shared/auth-request.model';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -18,7 +20,10 @@ export class LoginComponent implements OnInit {
   login(form: NgForm) {
     this.authService.login(new AuthRequest(form.value.username, form.value.password) )
       .subscribe(
-        logged => console.log(`${logged.userName} logged in successfuly.`),
+        logged => {
+          console.log(`${logged.userName} logged in successfuly.`);
+          this.router.navigate(['/']);
+        },
         error => console.log('There was an error logging the user.')
       );
   }

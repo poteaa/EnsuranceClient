@@ -37,56 +37,82 @@
             </div>
         </div>
         <div class="horizonta-align-center col-sm-4 form-group">
-          <label for="coveragetype">Coverage Type</label>
+          <label for="coverageType">Coverage Type</label>
           <select
             class="input"
             type="text"
-            id="coveragetype"
-            name="coveragetype"
+            id="coverageType"
+            name="coverageType"
             ngModel
             required
-            #coveragetype="ngModel">>
+            #coverageType="ngModel">>
               <option *ngFor="let coverage of allCoverages"  [value]="coverage.id">
                 {{ coverage.name }}
               </option>
           </select>
-          <div *ngIf="coveragetype.invalid && (coveragetype.dirty || coveragetype.touched)"
+          <div *ngIf="coverageType.invalid && (coverageType.dirty || coverageType.touched)"
             class="alert alert-danger">
-              <div *ngIf = "coveragetype.errors?.required">
+              <div *ngIf = "coverageType.errors?.required">
                 Coverage field can't be blank
               </div>
             </div>
         </div>
         <div class="horizonta-align-center col-sm-4 form-group">
-          <label for="coveragepercentage">Coverage percentage</label>
+          <label for="coveragePercentage">Coverage percentage</label>
           <input
             class="input"
             type="text"
-            id="coveragepercentage"
-            name="coveragepercentage"
+            id="coveragePercentage"
+            name="coveragePercentage"
             ngModel
             required
-            #coveragepercentage="ngModel">
-          <div *ngIf="coveragepercentage.invalid && (coveragepercentage.dirty || coveragepercentage.touched)"
+            [pattern]="validPercentageRange"
+            #coveragePercentage="ngModel">
+          <div *ngIf="coveragePercentage.invalid && (coveragePercentage.dirty || coveragePercentage.touched)"
             class="alert alert-danger">
-              <div *ngIf = "coveragepercentage.errors?.required">
-                Start date Name field can't be blank
+              <div *ngIf = "coveragePercentage.errors?.required">
+                Coverage percentage field can't be blank.
+              </div>
+              <div *ngIf = "coveragePercentage.errors?.pattern">
+                Must be between 0 and 100.
               </div>
             </div>
         </div>
         <div class="horizonta-align-center col-sm-4 form-group">
-          <label for="coveragetime">Coverage time</label>
+          <label for="coverageTime">Coverage time</label>
           <input
             class="input"
             type="text"
-            id="coveragetime"
-            name="coveragetime"
+            id="coverageTime"
+            name="coverageTime"
             ngModel
             required
-            #coveragetime="ngModel">
-          <div *ngIf="coveragetime.invalid && (coveragetime.dirty || coveragetime.touched)"
+            #coverageTime="ngModel">
+          <div *ngIf="coverageTime.invalid && (coverageTime.dirty || coverageTime.touched)"
             class="alert alert-danger">
-              <div *ngIf = "coveragetime.errors?.required">
+              <div *ngIf = "coverageTime.errors?.required">
+                Coverage time field can't be blank
+              </div>
+            </div>
+        </div>
+        <div class="horizonta-align-center col-sm-4 form-group">
+          <label for="riskType">Risk type</label>
+          <select
+            class="input"
+            type="text"
+            id="riskType"
+            name="riskType"
+            ngModel
+            required
+            (change)="riskChange(riskType)"
+            #riskType="ngModel">
+              <option class="horizonta-align-center" *ngFor="let risk of allRisks" [value]="risk.id">
+                {{ risk.name }}
+              </option>
+          </select>
+          <div *ngIf="riskType.invalid && (riskType.dirty || riskType.touched)"
+            class="alert alert-danger">
+              <div *ngIf = "riskType.errors?.required">
                 Coverage time field can't be blank
               </div>
             </div>
@@ -108,28 +134,8 @@
               </div>
             </div>
         </div>
-        <div class="horizonta-align-center col-sm-4 form-group">
-          <label for="risktype">Risk type</label>
-          <select
-            class="input"
-            type="text"
-            id="risktype"
-            name="risktype"
-            ngModel
-            required
-            #risktype="ngModel">>
-              <option class="horizonta-align-center" *ngFor="let risk of allRisks" [value]="risk.id">
-                {{ risk.name }}
-              </option>
-          </select>
-          <div *ngIf="risktype.invalid && (risktype.dirty || risktype.touched)"
-            class="alert alert-danger">
-              <div *ngIf = "risktype.errors?.required">
-                Coverage time field can't be blank
-              </div>
-            </div>
-        </div>
       </div>
+      <div class="error">{{ errorHighRiskPolicy }}</div>
       <div class="row">
         <div class="col-xs-12">
           <button

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PolicyService } from './shared/policy.service';
 import { Policy } from './shared/policy.model';
+import { AuthService } from '../auth/shared/auth.service';
 
 @Component({
   selector: 'app-policies',
@@ -10,7 +11,8 @@ import { Policy } from './shared/policy.model';
 export class PoliciesComponent implements OnInit {
 
   policies: Policy[];
-  constructor(private policyService: PolicyService) { }
+  constructor(private policyService: PolicyService,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.policyService.getPolicies()
@@ -23,6 +25,10 @@ export class PoliciesComponent implements OnInit {
     this.policyService.deletePolicy(id)
       .subscribe(() => this.policies.splice(this.policies.findIndex(p => p.id === id), 1));
     console.log(id);
+  }
+
+  isAuthenticated() {
+    return this.authService.isLoggedIn();
   }
 
 }

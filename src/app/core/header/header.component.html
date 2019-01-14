@@ -1,34 +1,28 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-        <a routerLink="/" class="navbar-brand">GAP Insurance</a>
-    </div>
+<header>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="nav-link" routerLink="/" class="navbar-brand">GAP Insurance</a>
     <div class="collaps navbar-collapse">
-      <ul class="nav navbar-nav">
-        <ng-template [ngIf]="isAuthenticated()">
-          <li routerLinkActive="active"><a routerLink="clients">Clients</a></li>
-          <li routerLinkActive="active"><a routerLink="policys">Policies</a></li>
-          <li><a (click)="logout()">Logout</a></li>
-        </ng-template>
-        <app-login *ngIf="!isAuthenticated()"></app-login>
-      </ul>
-      <!-- <ul class="nav navbar-nav navbar-right">
-          <ng-template [ngIf]="!isAuthenticated()">
-              <li><a routerLink="/signup">Register</a></li>
-              <li><a routerLink="/signin">Login</a></li>
+      <ul class="navbar-nav navbar-right">
+          <ng-template [ngIf]="isAuthenticated()">
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" routerLink="clients">Clients</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" routerLink="policys">Policies</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link" (click)="logout()">Logout</a>
+            </li>
           </ng-template>
-          <li><a
-                  style="cursor: pointer;"
-                  (click)="onLogout()"
-                  *ngIf="isAuthenticated()">Logout</a></li>
-          <li class="dropdown" appDropdown *ngIf="isAuthenticated()">
-              <a style="cursor: pointer" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                  <li><a style="cursor: pointer" (click)="onSaveData()">Save Data</a></li>
-                  <li><a style="cursor: pointer" (click)="onFetchData()">Fetch Data</a></li>
-              </ul>
-          </li>
-      </ul> -->
+          <ng-template [ngIf]="!isAuthenticated()">
+            <li class="nav-item" >
+              <a class="nav-link" routerLink="login">Login</a>
+            </li>
+          </ng-template>
+        <!-- <div class="navbar-right">
+          <app-login *ngIf="!isAuthenticated()"></app-login>
+        </div> -->
+      </ul>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>

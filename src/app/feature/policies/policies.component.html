@@ -5,10 +5,10 @@
       <td>{{ policy.name }}</td>
       <td>{{ policy.description }}</td>
       <td><a [routerLink]="['policies', policy.id, 'detail']">View</a></td>
-      <td><a [routerLink]="['policies', policy.id, 'edit']">Edit</a></td>
+      <td *ngIf="isAuthenticated()"><a [routerLink]="['policies', policy.id, 'edit']">Edit</a></td>
       <td (click)="delete(policy.id)">Delete</td>
     </tr>
   </table>
-  <button
+  <button *ngIf="isAuthenticated()"
     class="btn btn-success" routerLink="policy/create">Create</button>
 </div>
