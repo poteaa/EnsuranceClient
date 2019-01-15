@@ -37,7 +37,7 @@ import { AuthGuard } from './../feature/auth/shared/auth-guard.service';
     RiskService,
     ClientService,
     AuthService,
-    AuthGuard
+    AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
 })
